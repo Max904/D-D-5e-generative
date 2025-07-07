@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="page_title">Generador de Campañas D&D 5e</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cormorant+Garamond:wght@400;700&display=swap" rel="stylesheet">
+    <script type="importmap">
+        {
+            "imports": {
+                "script": "./script.js"
+            }
+        }
+    </script>
+    <script type="module" src="script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="corner-holder"></div> <!-- Used to hold bottom corner pseudo-elements -->
+        <img src="shield-ornament.png" alt="Escudo Decorativo" class="title-shield left-shield">
+        <h1 data-i18n="campaign_generator_title">Generador de Campañas D&D 5e</h1>
+        <img src="shield-ornament.png" alt="Escudo Decorativo" class="title-shield right-shield">
+
+        <!-- Language Selector -->
+        <div class="language-selector">
+            <label for="languageSelect" data-i18n="language_label">Idioma:</label>
+            <select id="languageSelect">
+                <option value="es">Español</option>
+                <option value="en">English</option>
+            </select>
+        </div>
+
+        <p data-i18n="campaign_description">Haz clic en el botón para generar una nueva idea de campaña completa para tu próxima aventura.</p>
+
+        <!-- Input for User Prompt -->
+        <div class="user-prompt-container">
+            <label for="userPromptInput" data-i18n="user_prompt_label">Personaliza tu Campaña (Opcional):</label>
+            <textarea id="userPromptInput" rows="2" data-i18n-placeholder="user_prompt_placeholder" placeholder="Ej: La campaña ocurre en un desierto de cristal, los PNJs son todos no-muertos, debe haber un dragón celestial..."></textarea>
+        </div>
+
+        <div class="button-container"> <!-- Container for button and logo -->
+            <button id="generateBtn" data-i18n="generate_campaign_button">Generar Campaña</button>
+            <img src="logo.svg" alt="Logo D&D" class="button-logo"> <!-- Add the logo -->
+        </div>
+
+        <!-- New Section for Saved Campaigns -->
+        <div class="saved-campaigns-section saved-items-section">
+            <div class="saved-items-header">
+                <h3 class="section-subtitle" data-i18n="saved_campaigns_title">Campañas Guardadas</h3>
+                <button id="saveCurrentCampaignBtn" class="small-button" data-i18n="save_campaign_button">Guardar Campaña Actual</button>
+            </div>
+            <p data-i18n="saved_campaigns_description">Selecciona una campaña de la lista para ver sus detalles. Haz clic en "Guardar Campaña Actual" para añadir la campaña recién generada.</p>
+            <div id="savedCampaignTabs" class="saved-item-tabs">
+                <!-- Saved campaign tabs will be populated here -->
+            </div>
+        </div>
+
+        <div id="campaignOutput" class="campaign-box">
+             <!-- Campaign content will be generated here by the API or loaded from saved -->
+             <p class="loading-message" data-i18n="campaign_output_initial_message">Presiona [Generar Campaña] para empezar</p>
+        </div>
+
+        <!-- New Character Generator Section -->
+        <div class="character-generator-section">
+            <h2 class="section-title" data-i18n="character_generator_title">Generador de Personajes</h2>
+
+            <p data-i18n="character_description">Genera ideas para personajes jugadores (PNJs) o personajes no jugadores (PNJs) con un clic.</p>
+
+            <!-- Input for Character Prompt -->
+            <div class="user-prompt-container">
+                <label for="characterPromptInput" data-i18n="character_prompt_label">Personaliza tu Personaje (Opcional):</label>
+                <textarea id="characterPromptInput" rows="2" data-i18n-placeholder="character_prompt_placeholder" placeholder="Ej: Un elfo druida ermitaño, un guerrero tiefling con un pasado oscuro, un bardo gnomo amante de las fiestas..."></textarea>
+            </div>
+
+            <div class="button-container">
+                <button id="generateCharacterBtn" data-i18n="generate_character_button">Generar Personaje</button>
+                <!-- Optional: Add a specific character logo if available, using the D&D logo for now -->
+                 <img src="logo.svg" alt="Logo D&D" class="button-logo">
+            </div>
+
+            <!-- New Section for Saved Characters -->
+             <div class="saved-characters-section saved-items-section">
+                 <div class="saved-items-header">
+                     <h3 class="section-subtitle" data-i18n="saved_characters_title">Personajes Guardados</h3>
+                      <button id="saveCurrentCharacterBtn" class="small-button" data-i18n="save_character_button">Guardar Personaje Actual</button>
+                 </div>
+                  <p data-i18n="saved_characters_description">Selecciona un personaje de la lista para ver sus detalles. Haz clic en "Guardar Personaje Actual" para añadir el personaje recién generado.</p>
+                 <div id="savedCharacterTabs" class="saved-item-tabs">
+                     <!-- Saved character tabs will be populated here -->
+                 </div>
+             </div>
+
+            <div id="characterOutput" class="campaign-box">
+                 <!-- Character content will be generated here by the API or loaded from saved -->
+                 <p class="loading-message" data-i18n="character_output_initial_message">Presiona [Generar Personaje] para empezar</p>
+            </div>
+
+        </div>
+
+    </div>
+</body>
+</html>
