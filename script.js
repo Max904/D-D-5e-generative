@@ -34,18 +34,6 @@ let lastCharacterPrompt = '';
 let savedCampaigns = JSON.parse(localStorage.getItem('savedCampaigns')) || [];
 let savedCharacters = JSON.parse(localStorage.getItem('savedCharacters')) || [];
 
-// --- API Key Obfuscation ---
-// Function to decode a simple base64 encoded string
-function decode(encoded) {
-    return atob(encoded);
-}
-
-// Store the encoded key
-const encodedApiKey = 'Z3NrXzJ3VXpySktFNkE5Q1NRWnlJbUhXR2R5YjNGWWdMbHB0NGJJa2gyU2ZuMnJ0d3lpcWtoSg=='; // Base64 encoded
-
-// Get the API key by decoding it
-const getApiKey = () => decode(encodedApiKey);
-
 // --- Language Translation Data ---
 const translations = {
     es: {
@@ -128,7 +116,7 @@ const translations = {
          // New translations for saved campaigns
         saved_campaigns_title: "Saved Campaigns",
         save_campaign_button: "Save Current Campaign",
-        saved_campaigns_description: "Select a campaign from the list to view their details. Click \"Save Current Campaign\" to add the newly generated campaign.",
+        saved_campaigns_description: "Select a campaign from the list to view its details. Click \"Save Current Campaign\" to add the newly generated campaign.",
         saved_campaign_initial_message: "Select a campaign from the list above.", // Message shown when saved campaigns exist but none are selected
         save_error_no_campaign: "No campaign to save. Generate one first.",
         save_success_campaign: "Campaign saved: ",
@@ -329,7 +317,7 @@ Tu narrativa debe tener una atmósfera mística y grandiosa, como una saga inolv
         const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
             method: 'POST',
             headers: {
-                'Authorization': `Bearer ${getApiKey()}`,
+                'Authorization': `Bearer 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`,
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
@@ -406,7 +394,7 @@ async function generateCharacter() {
 
 
     const apiUrl = "https://api.groq.com/openai/v1/chat/completions";
-    const apiKey = getApiKey(); // Use the obfuscated key
+    const apiKey = "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"; // Replace with your actual API key if it changes
 
     // System prompt for character generation - Updated to accept campaign context - REINFORCED FORMATTING
     // Base System prompt in Spanish
