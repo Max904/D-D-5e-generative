@@ -1,0 +1,493 @@
+body {
+    font-family: 'Cormorant Garamond', serif; /* More medieval-style body font */
+    background-color: #1a1a1a; /* Dark fallback background color */
+    color: #e0d8c8; /* Light, aged paper color for general text */
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    /* Use the background.jpg asset as a repeating background */
+    background-image: url('/background.jpg');
+    background-repeat: repeat;
+    background-size: auto; /* Ensure the pattern repeats at its original size */
+    background-attachment: scroll; /* Let the background scroll with the content */
+}
+
+.container {
+    background-color: #333333; /* Dark container background */
+    padding: 30px;
+    border-radius: 8px;
+    border: 3px solid #5a4a3a; /* Earthy brown border */
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+    position: relative; /* Needed for absolute positioning of corner ornaments */
+    /* Remove the subtle inner texture as we have a repeating background */
+    /* background-image: none; */ /* Or simply remove the background-image property for the container */
+}
+
+/* Corner Ornaments */
+/* Base styles for all corner pseudo-elements */
+.container::before,
+.container::after,
+.corner-holder::before,
+.corner-holder::after {
+    content: '';
+    position: absolute;
+    width: 50px; /* Adjust size as needed */
+    height: 50px; /* Adjust size as needed */
+    background-image: url('borde.png'); /* Use the new borde.png asset */
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: 1; /* Ensure they are above the container background */
+}
+
+/* Top Left */
+.container::before {
+    top: 0; /* Adjusted from -25px to bring closer */
+    left: 0; /* Adjusted from -25px to bring closer */
+    transform: rotate(270deg); /* Correct rotation for top-left */
+}
+
+/* Top Right */
+.container::after {
+    top: 0; /* Adjusted from -25px to bring closer */
+    right: 0; /* Adjusted from -25px to bring closer */
+    transform: rotate(0deg); /* Correct rotation for top-right */
+}
+
+/* Style for the nested div used for bottom corners */
+.corner-holder {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Allows clicking through the div */
+}
+
+/* Bottom Left */
+.corner-holder::before {
+    bottom: 0; /* Adjusted from -25px to bring closer */
+    left: 0; /* Adjusted from -25px to bring closer */
+    transform: rotate(180deg); /* Correct rotation for bottom-left */
+}
+
+/* Bottom Right */
+.corner-holder::after {
+    bottom: 0; /* Adjusted from -25px to bring closer */
+    right: 0; /* Adjusted from -25px to bring closer */
+    transform: rotate(90deg); /* Adjusted rotation to correctly orient for bottom-right */
+}
+
+h1 {
+    color: #c5a87d; /* Gold-like color for titles */
+    font-family: 'Cinzel Decorative', serif; /* Decorative font for main title */
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 2px #000; /* Subtle shadow for readability */
+    position: relative; /* Needed for shield positioning */
+    display: inline-block; /* Allows centering with relative positioning */
+    padding: 0 60px; /* Add padding for shields */
+}
+
+.title-shield {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px; /* Adjust size as needed */
+    height: auto;
+}
+
+.left-shield {
+    left: 0;
+}
+
+.right-shield {
+    right: 0;
+}
+
+/* Styles for section titles within the container (like Character Generator) */
+.section-title {
+    color: #c5a87d; /* Gold-like color */
+    font-family: 'Cinzel Decorative', serif; /* Decorative font */
+    margin-top: 30px; /* Space above the section title */
+    margin-bottom: 15px;
+    font-size: 2em; /* Slightly larger */
+    text-shadow: 1px 1px 2px #000;
+    text-align: center;
+    position: relative; /* Needed for illustrations */
+    display: inline-block; /* Allows centering with relative positioning */
+}
+
+/* Styles for section illustrations */
+.section-illustration {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px; /* Adjust size as needed */
+    height: auto;
+    opacity: 0.8; /* Slightly reduce opacity */
+}
+
+.left-illustration {
+    left: 0;
+}
+
+.right-illustration {
+    right: 0;
+}
+
+/* Styles for generated titles (parsed from [Text]) */
+.campaign-box h2 {
+     color: #4b3b3b; /* Dark text for content inside the box */
+     font-family: 'Cinzel Decorative', serif; /* Decorative font */
+     margin-top: 20px; /* Space above generated titles */
+     margin-bottom: 10px;
+     font-size: 1.6em; /* Smaller than main title, larger than subtitles */
+     text-align: left; /* Align generated titles left */
+     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+     border-bottom: 1px solid #5a4a3a; /* Brown line below title */
+     padding-bottom: 5px; /* Space between title and line */
+ }
+
+ /* Styles for generated subtitles (parsed from 'Text') */
+ .campaign-box h3 {
+     color: #4b3b3b; /* Dark text for content inside the box */
+     font-family: 'Cormorant Garamond', serif; /* Use body font for subtitles */
+     margin-top: 15px; /* Space above generated subtitles */
+     margin-bottom: 8px;
+     font-size: 1.2em; /* Smaller than generated titles */
+     font-weight: bold; /* Make subtitles bold */
+     text-align: left; /* Align generated subtitles left */
+ }
+
+p {
+     margin-bottom: 15px;
+     text-align: left;
+     color: #e0d8c8; /* Ensure body text is the light color */
+ }
+
+button {
+     display: inline-block;
+     background-color: #5a4a3a; /* Earthy brown */
+     color: #e0d8c8; /* Light text color */
+     padding: 12px 25px; /* Slightly larger padding */
+     border: 2px solid #c5a87d; /* Gold border */
+     border-radius: 5px; /* Corrected typo from 'rumores' */
+     cursor: pointer;
+     font-size: 1.1em; /* Slightly larger font */
+     font-family: 'Cormorant Garamond', serif; /* Apply body font */
+     transition: background-color 0.3s ease, border-color 0.3s ease;
+     /* Removed margin-bottom here as it's now in the container */
+     text-transform: uppercase; /* Make text uppercase */
+     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Add shadow */
+     /* Ensure button doesn't grow */
+     flex-shrink: 0;
+     vertical-align: middle; /* Align vertically with heading */
+ }
+
+button:hover {
+     background-color: #7a614d; /* Lighter shade on hover */
+     border-color: #e0d8c8; /* Lighter border on hover */
+ }
+
+ /* Style for a smaller button */
+ .small-button {
+     padding: 8px 15px; /* Smaller padding */
+     font-size: 0.9em; /* Smaller font size */
+     text-transform: none; /* Don't uppercase text */
+     margin-left: 15px; /* Add space to the left */
+     box-shadow: none; /* No shadow on small buttons */
+ }
+
+ /* Style for the new button and logo container */
+ .button-container {
+     display: flex; /* Use flexbox to align children */
+     justify-content: center; /* Center horizontally */
+     align-items: center; /* Center vertically */
+     margin-bottom: 20px; /* Add space below the container */
+     gap: 15px; /* Add space between the button and the logo */
+ }
+
+ /* Style for the new user prompt input container */
+ .user-prompt-container {
+     margin-bottom: 20px; /* Space below the input */
+     display: flex;
+     flex-direction: column; /* Stack label and textarea */
+     align-items: center; /* Center items horizontally */
+     gap: 8px; /* Space between label and input */
+     width: 80%; /* Make container narrower */
+     margin-left: auto; /* Center the container */
+     margin-right: auto; /* Center the container */
+     text-align: left; /* Align text inside */
+ }
+
+ .user-prompt-container label {
+     color: #c5a87d; /* Gold color for label */
+     font-family: 'Cormorant Garamond', serif;
+     font-size: 1em;
+     text-align: center; /* Center label text */
+ }
+
+ .user-prompt-container textarea {
+     background-color: #4b3b3b; /* Dark brown background */
+     color: #e0d8c8; /* Light text */
+     border: 1px solid #7a614d; /* Medium brown border */
+     border-radius: 4px;
+     padding: 8px 10px;
+     width: 100%; /* Take full width of its container */
+     min-height: 60px; /* Minimum height */
+     font-family: 'Cormorant Garamond', serif;
+     font-size: 1em;
+     resize: vertical; /* Allow vertical resizing */
+     box-sizing: border-box; /* Include padding and border in the element's total width and height */
+ }
+
+ .user-prompt-container textarea::placeholder {
+     color: #a09080; /* Lighter placeholder text */
+     opacity: 0.8;
+ }
+
+ .user-prompt-container textarea:focus {
+     outline: none;
+     border-color: #c5a87d; /* Gold border on focus */
+     box-shadow: 0 0 5px rgba(197, 168, 125, 0.5); /* Gold shadow on focus */
+ }
+
+ /* Style for the logo next to the button */
+ .button-logo {
+     height: 40px; /* Set a height for the logo */
+     width: auto; /* Maintain aspect ratio */
+     opacity: 0.8; /* Slightly reduce opacity */
+ }
+
+ /* Removed NPC count input container styles */
+
+ /* Updated class name to campaign-box */
+ .campaign-box {
+     background-color: #e0d8c8; /* Light parchment-like color */
+     border: 2px solid #5a4a3a; /* Brown border */
+     padding: 20px;
+     border-radius: 5px;
+     text-align: left;
+     min-height: 150px;
+     color: #4b3b3b; /* Darker text for contrast on light background */
+     word-wrap: break-word;
+     margin-top: 20px; /* Add space above the box */
+     position: relative; /* Needed for illustration positioning */
+     /* Optional: Add a parchment texture */
+     background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100%25" height="100%25"%3E%3Cdefs%3E%3Cpattern id="noise" x="0" y="0" width=".7" height=".7" patternUnits="userSpaceOnUse"%3E%3Cfilter id="gaussian" x="-50%" y="-50%" width="200%" height="200%"%3E%3CfeGaussianBlur in="SourceGraphic" stdDeviation="1"%3E%3C/feGaussianBlur%3E%3C/filter%3E%3Crect width="100%25" height="100%25" fill="%23e0d8c8"%3E%3C/rect%3E%3Crect width="100%25" height="100%25" fill="url(%23noise)" opacity="0.5" filter="url(%23gaussian)"%3E%3C/rect%3E%3C/pattern%3E%3C/defs%3E%3Crect width="100%25" height="100%25" fill="url(%23noise)"%3E%3C/rect%3E%3C/svg%3E');
+     background-size: cover;
+ }
+
+ /* Keep the color for paragraphs within the box */
+ .campaign-box p {
+     margin-bottom: 10px;
+     font-style: normal;
+     color: #4b3b3b; /* Ensure paragraphs within box are dark */
+     text-align: left; /* Ensure paragraphs align left */
+ }
+
+ /* Ensure general text color is applied correctly */
+ .container p, .container li {
+     color: #e0d8c8;
+ }
+
+ /* Override text color for campaign box content */
+ .campaign-box p, .campaign-box li {
+     color: #4b3b3b;
+ }
+
+ /* New styles for the character generator section */
+ .character-generator-section {
+     margin-top: 40px; /* Add significant space above the new section */
+     padding-top: 30px; /* Add padding inside the section top */
+     border-top: 2px solid #5a4a3a; /* Add a dividing line */
+     position: relative; /* Needed for illustrations */
+ }
+
+ /* Ensure elements inside the character section are styled correctly */
+ .character-generator-section .user-prompt-container label,
+ .character-generator-section p {
+     color: #e0d8c8; /* Use the light text color for prompts and descriptions */
+ }
+
+ /* Ensure the character output box uses the dark text color */
+ .character-generator-section .campaign-box p,
+ .character-generator-section .campaign-box li,
+ .character-generator-section .campaign-box strong,
+ .character-generator-section .campaign-box h2,
+ .character-generator-section .campaign-box h3 {
+     color: #4b3b3b;
+ }
+
+ /* Loading message style */
+ .loading-message {
+     text-align: center;
+     font-style: italic;
+     color: #665544; /* Match prompt color */
+ }
+
+ .error-message {
+      text-align: center;
+      font-weight: bold;
+      color: #ff6347; /* Tomato red for errors */
+ }
+
+  /* Style for the italic prompt note at the end of the output boxes */
+  .italic-prompt {
+      font-style: italic;
+      margin-top: 20px;
+      text-align: center;
+      /* Ensure this note also has the correct color inside the box */
+      color: #665544; /* Match prompt color */
+  }
+
+/* Style for the language selector */
+.language-selector {
+    margin: 20px 0;
+    text-align: center; /* Center the selector */
+}
+
+.language-selector label {
+    margin-right: 10px;
+    color: #c5a87d; /* Gold color for label */
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1em;
+}
+
+.language-selector select {
+    background-color: #4b3b3b; /* Dark brown background */
+    color: #e0d8c8; /* Light text */
+    border: 1px solid #7a614d; /* Medium brown border */
+    border-radius: 4px;
+    padding: 5px 8px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1em;
+    cursor: pointer;
+}
+
+.language-selector select:focus {
+    outline: none;
+    border-color: #c5a87d; /* Gold border on focus */
+    box-shadow: 0 0 5px rgba(197, 168, 125, 0.5); /* Gold shadow on focus */
+}
+
+/* --- New Styles for Saved Items Sections (Campaigns and Characters) --- */
+/* Unified section style */
+.saved-items-section {
+    margin-top: 30px; /* Space above the section, less than the main section margin */
+    /* No padding-top or border-top here, as it's part of the parent section if applicable */
+}
+
+/* Unified header style */
+.saved-items-header {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center the header contents */
+    margin-bottom: 10px; /* Space below the header */
+    flex-wrap: wrap; /* Allow header items to wrap on smaller screens */
+    gap: 15px; /* Space between title and button */
+}
+
+.saved-items-header .section-subtitle {
+    margin: 0; /* Reset margin */
+    font-size: 1.5em; /* Slightly smaller than main section title */
+    /* Inherits color from .section-title via cascading or explicit rule */
+}
+
+/* Description text for saved items */
+.saved-items-section > p {
+    text-align: center; /* Center the description text */
+    margin-bottom: 15px; /* Space below description */
+}
+
+/* Unified tabs container style */
+.saved-item-tabs {
+    display: flex; /* Arrange tabs horizontally */
+    flex-wrap: wrap; /* Allow tabs to wrap if needed */
+    gap: 10px; /* Space between tabs */
+    margin-bottom: 20px; /* Space below tabs and above the display box */
+    justify-content: center; /* Center the tabs */
+}
+
+/* Container for individual tab button and delete button */
+.saved-item-tab-container {
+    display: flex;
+    align-items: center;
+    border: 1px solid #7a614d; /* Match tab border */
+    border-radius: 4px; /* Match tab border radius */
+    overflow: hidden; /* Hide overflow for long names */
+    /* Inherit gap from parent .saved-item-tabs, no internal gap needed */
+}
+
+/* Style for the individual tab button (text part) */
+.saved-item-tabs button.saved-item-tab {
+     background-color: #4b3b3b; /* Darker background for tabs */
+     color: #c5a87d; /* Gold text for tabs */
+     border: none; /* Remove individual button border as container has it */
+     border-radius: 0; /* Remove individual button radius */
+     padding: 5px 10px;
+     cursor: pointer;
+     font-size: 0.9em;
+     font-family: 'Cormorant Garamond', serif;
+     transition: background-color 0.2s ease, color 0.2s ease;
+     text-transform: none; /* No uppercase */
+     box-shadow: none; /* No shadow on tabs */
+     flex-grow: 1; /* Allow the text part to grow */
+     min-width: 50px; /* Minimum width for small names */
+     max-width: 200px; /* Limit max width */
+     overflow: hidden; /* Hide overflow if name is too long */
+     text-overflow: ellipsis; /* Show ellipsis for long names */
+     white-space: nowrap; /* Prevent wrapping */
+     text-align: left; /* Align tab text left */
+     /* Override button specific styles */
+      height: auto; /* Allow height to adjust based on content/padding */
+      line-height: normal; /* Reset line height */
+      padding-top: 5px; /* Ensure consistent vertical padding */
+      padding-bottom: 5px;
+}
+
+/* Style for the delete button within the tab container */
+.saved-item-tab-container button.delete-item-button {
+    background-color: #665544; /* A slightly different shade */
+    color: #e0d8c8; /* Light text */
+    border: none; /* Remove individual button border */
+    border-radius: 0; /* Remove individual button radius */
+    padding: 5px 8px;
+    cursor: pointer;
+    font-size: 0.8em; /* Smaller font for X */
+    font-weight: bold;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    text-transform: uppercase;
+    box-shadow: none;
+    flex-shrink: 0; /* Prevent shrinking */
+    line-height: normal; /* Reset line height */
+    height: auto; /* Allow height to match tab button */
+    /* Use same vertical padding as tab button */
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.saved-item-tab-container button.delete-item-button:hover {
+    background-color: #ff6347; /* Red color on hover for delete */
+    color: white;
+}
+
+.saved-item-tabs button.saved-item-tab:hover {
+    background-color: #5a4a3a; /* Hover color */
+    color: #e0d8c8; /* Light text on hover */
+}
+
+.saved-item-tabs button.saved-item-tab.active {
+    background-color: #c5a87d; /* Active color */
+    color: #4b3b3b; /* Dark text for active tab */
+    /* Also style the parent container's border when active */
+}
+
+.saved-item-tab-container:has(button.saved-item-tab.active) {
+     border-color: #e0d8c8; /* Lighter border for the active container */
+}
